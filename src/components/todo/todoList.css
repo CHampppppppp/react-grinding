@@ -1,0 +1,230 @@
+.listContainer{
+  height: 100vh;
+  width: 100%;
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title{
+  font-size: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  /* 添加立体感的文字阴影效果 */ 
+  /* 添加渐变色让文字更有层次感 */
+  background: linear-gradient(45deg, #ff6b6b, #c2944e, #b04937);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* 添加动画让渐变色流动 */
+  animation: gradientShift 3s ease-in-out infinite;
+  /* 增加字体粗细 */
+  font-weight: bold;
+  /* 添加轻微的变换效果 */
+  transform: perspective(500px) rotateX(15deg);
+  transform-style: preserve-3d;
+}
+
+/* 渐变色流动动画 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 鼠标悬停时的立体效果增强 */
+.title:hover {
+  transform: perspective(500px) rotateX(15deg) scale(1.01);
+  transition: all 0.3s ease;
+}
+
+.inputContainer{
+  display: flex;
+  justify-content: center;
+  gap:12px;
+}
+
+.input{
+  width: 620px;
+  height:50px;
+  border: 4px solid #8f4242;
+  border-radius: 5px;
+  font-size:20px;
+  padding:10px;
+  color:#333;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 6px;
+}
+
+.input::placeholder{
+  color:#999;
+  font-style:italic;
+  opacity: 0.7;
+}
+
+.input:focus{
+  outline: none;
+  box-shadow: 0 0 15px rgba(87, 40, 40, 0.3);
+  transition:all 0.3s ease;
+  transform: scale(1.01);
+}
+
+.addButton{
+  width:12%;
+  height:60px;
+  padding: 0 20px;
+  background-color: #b76767;
+  color:white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .addButton:hover{
+  box-shadow: 0 0 15px rgba(87,40,40,0.3);
+  background-color:#8f4242;
+} */
+
+.addButtonText{
+  width: 100%;
+  height:100%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+.addButtonText:hover{
+  transform:translateY(-2px) scale(1.1);
+  transition: all 0.3s ease;
+}
+
+
+.todoList{
+  margin-top: 20px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: -10px;
+  overflow-y: auto;
+  max-height: 70vh;
+  /* 更丝滑的滚动 */
+  scroll-behavior: smooth;
+  scroll-snap-type:y proximity;
+}
+
+.todoContainer{
+  display: flex;
+  gap: 12px;
+  border:2px solid white;
+  border-radius: 4px;
+  padding: 8px 8px;
+  width:100%;
+  /* 更丝滑的滚动 */
+  scroll-snap-align: start;
+  transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.todoContainer:hover{
+  border-color: #b76767;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.157);
+}
+
+.todoContainer li{
+  font-size: 22px;
+  list-style:none;
+  font-family: 'Courier New', Courier, monospace;
+  padding:3px;
+  transition: all 0.3s ease;
+}
+
+.todoList li:hover{
+  transform: translateY(-1px) scale(1.04);
+}
+
+.completeButton{
+  background-color: #b76767;
+  color:white;
+  border: none;
+  padding: 8px;
+  border-radius: 2px;
+  margin-left: auto;
+  cursor:pointer;
+}
+
+.completeButton:hover{
+  box-shadow: 0 0 2px rgba(87,40,40,0.3);
+  transform: translateY(-1px) scale(1.04);
+  transition: all 0.3s ease;
+
+}
+
+.deleteButton{
+  background-color: #b76767;
+  color:white;
+  border: none;
+  padding: 8px;
+  border-radius: 2px;
+  cursor:pointer;
+}
+
+.deleteButton:hover{
+  box-shadow: 0 0 2px rgba(87,40,40,0.3);
+  transform: translateY(-1px) scale(1.04);
+  transition: all 0.3s ease;
+}
+
+.mouseSvg{
+  display: flex;
+  margin-left: auto;
+  scale: 1.4;
+}
+
+
+/* 隐藏滚动条 */
+.todoList::-webkit-scrollbar {
+  width: 0px;
+}
+
+.message{
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #8f4242;
+  margin-top: 10px;
+}
+
+/* 自定义message内容样式 */
+.ant-message-notice-content {
+  background: linear-gradient(135deg, #d18080 0%, #d66565 100%) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  padding: 8px 20px !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+}
+
+
+
+
+
