@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { message } from 'antd'
 import { motion, useInView } from 'motion/react'
-import './todoList.css'
+import './index.css'
 import MouseSvg from './MouseSvg'
 
 // 创建独立的TodoItem组件来处理每个项的动画
@@ -43,8 +43,8 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
       animate={isInView ? "visible" : "exit"}
       className="todoContainer"
     >
-      <li className={todo.completed ? 'completed' : ''}>{todo.id}. {todo.text}</li>
-      <button className="completeButton" onClick={() => onComplete(todo.id)}>complete</button>
+      <li className={todo.completed ? 'completed' : ''}>{todo.text}</li>
+      <button className="completeButton" onClick={() => onComplete(todo.id)}>{todo.completed?'undo':'complete'}</button>
       <button className="deleteButton" onClick={() => onDelete(todo.id)}>delete</button>
     </motion.div>
   )
@@ -56,6 +56,9 @@ const TodoList = () => {
     {id:1,text:'workout',completed:false},
     {id:2,text:'study',completed:false},
     {id:3,text:'sleep',completed:false},
+    {id:4,text:'read',completed:false},
+    {id:5,text:'love piggy',completed:false},
+    {id:6,text:'love Camellia',completed:true},
   ])
 
   const [inputText, setInputText] = useState('')
@@ -75,9 +78,11 @@ const TodoList = () => {
     }else{
       // 使用antd的成功消息提示
       message.success({
-        content:'添加成功'
+        content:'添加成功',
       })
-      const newTodos = [...todos,{id:todos.length+1,text:inputText,completed:false}]
+      // 使用更可靠的ID生成方法
+      const newId = todos.length > 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1
+      const newTodos = [...todos,{id: newId, text:inputText, completed:false}]
       setTodos(newTodos)
       localStorage.setItem('todos',JSON.stringify(newTodos))
       setInputText('')
@@ -86,11 +91,21 @@ const TodoList = () => {
 
   const handleComplete = (id) =>{
     console.log('completed ' + id)
-
+    const newTodos = todos.map((todo)=>{
+      if(todo.id === id){
+        return {...todo,completed:!todo.completed}
+      }
+      return todo
+    })
+    setTodos(newTodos)
+    localStorage.setItem('todos',JSON.stringify(newTodos))
   }
 
   const handleDelete = (id) =>{
     console.log('deleted ' + id)
+    const newTodos = todos.filter((todo)=>todo.id !== id)
+    setTodos(newTodos)
+    localStorage.setItem('todos',JSON.stringify(newTodos))
   }
 
   return (
@@ -103,13 +118,13 @@ const TodoList = () => {
         className='input' 
         value={inputText} 
         onChange={(e)=>setInputText(e.target.value)} 
-        />
-        <button className='addButton' onClick={handleClick} 
         onKeyDown={(e)=>{
           if(e.key === 'Enter'){
             handleClick()
           }
-        }}>
+        }}
+        />
+        <button className='addButton' onClick={handleClick}>
           <span className="addButtonText">Add</span>
         </button>
       </div>
@@ -122,8 +137,8 @@ const TodoList = () => {
             onDelete={handleDelete} 
           />
         ))}
+        <MouseSvg />
       </ul>
-      <MouseSvg />
     </div>
   ) 
 }
