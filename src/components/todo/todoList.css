@@ -9,7 +9,7 @@
 }
 
 .title{
-  font-size: 70px;
+  font-size: 50px;
   margin-top: 20px;
   margin-bottom: 10px;
   text-align: center;
@@ -119,7 +119,7 @@
 }
 
 
-.todoList{
+.item{
   margin-top: 20px;
   width: 45%;
   display: flex;
@@ -158,13 +158,7 @@
   transition: all 0.3s ease;
 }
 
-.todoContainer li.completed{
-  text-decoration: line-through;
-  opacity: 0.4;
-  color:#888;
-}
-
-.todoContainer li:hover{
+.todoList li:hover{
   transform: translateY(-1px) scale(1.04);
 }
 
@@ -201,9 +195,8 @@
 }
 
 .mouseSvg{
-  position:absolute;
-  bottom: 400px;
-  right: 400px;
+  display: flex;
+  margin-left: auto;
   scale: 1.4;
 }
 
@@ -231,45 +224,34 @@
   font-weight: 300 !important;
 }
 
+/* ==================== 移动端适配样式 ==================== */
 
-/* 响应式设计 */
-@media (max-width: 1200px) {
-  .mouseSvg{
-    right:250px;
-    bottom:250px;
+/* 平板设备适配 (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .listContainer {
+    padding: 0 20px;
   }
-}
-@media (max-width: 1061px) {
-  .mouseSvg{
-    right:220px;
+  
+  .title {
+    font-size: 42px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
-}
-@media (max-width: 958px) {
-  .mouseSvg{
-    right:200px;
-  }
-}
-
-
-/* ==================== 移动端响应式设计 ==================== */
-/* 保持桌面端原样式不变，只在移动端进行必要调整 */
-
-/* 平板设备适配 (769px - 1024px) */
-@media screen and (max-width: 1024px) and (min-width: 769px) {
+  
   .input {
-    width: 600px;
+    width: 500px;
+    height: 45px;
+    font-size: 18px;
   }
   
   .addButton {
     width: 15%;
+    height: 55px;
+    font-size: 16px;
   }
   
-  .todoList {
-    width: 55%;
-  }
-  
-  .mouseSvg {
-    right: 180px;
+  .item {
+    width: 60%;
   }
 }
 
@@ -277,63 +259,86 @@
 @media screen and (max-width: 768px) {
   .listContainer {
     padding: 0 15px;
+    min-height: 100vh;
   }
   
   .title {
-    font-size: 80px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    /* 保持3D效果，但稍微减少复杂度 */
-    transform: perspective(400px) rotateX(12deg);
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* 移动端减少3D效果，避免性能问题 */
+    transform: none;
+    text-shadow: 
+      1px 1px 0px #151414,
+      2px 2px 0px #0a0a0a,
+      3px 3px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .title:hover {
+    transform: scale(1.02);
   }
   
   .inputContainer {
     flex-direction: column;
     gap: 15px;
+    width: 100%;
     align-items: center;
   }
   
   .input {
-    width: 250%;
-    max-width: 800px;
-    height: 60px;
-    font-size: 18px;
-  }
-  
-  .addButton {
-    width: 85%;
+    width: 90%;
     max-width: 400px;
     height: 50px;
     font-size: 16px;
+    padding: 12px;
+    border: 3px solid #8f4242;
   }
   
-  .todoList {
-    width: 80%;
-    margin-top: 20px;
+  .addButton {
+    width: 90%;
+    max-width: 400px;
+    height: 50px;
+    font-size: 16px;
+    margin-top: 0;
+  }
+  
+  .item {
+    width: 95%;
+    margin-top: 25px;
+    max-height: 60vh;
   }
   
   .todoContainer {
-    flex-wrap: wrap;
-    padding: 8px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
   }
   
   .todoContainer li {
-    width: 100%;
-    font-size: 46px;
-    margin-bottom: 8px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
   }
   
   .completeButton,
   .deleteButton {
-    flex: 1;
-    min-width: 60px;
-    padding: 8px 12px;
-    font-size: 12px;
-    margin: 2px;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    margin: 5px 0;
+    border-radius: 6px;
+    /* 增加触摸目标大小 */
+    min-height: 44px;
   }
   
-  .mouseSvg {
-    display: none;
+  .completeButton {
+    background-color: #4CAF50;
+  }
+  
+  .deleteButton {
+    background-color: #f44336;
   }
 }
 
@@ -344,85 +349,58 @@
   }
   
   .title {
-    font-size: 70px;
-    margin-top: 10px;
-    margin-bottom: 12px;
+    font-size: 28px;
+    margin-top: 8px;
+    margin-bottom: 15px;
   }
   
   .input {
-    width: 150%;
-    height: 60px;
-    font-size: 16px;
-    padding: 8px;
+    width: 95%;
+    height: 48px;
+    font-size: 15px;
+    padding: 10px;
   }
   
   .addButton {
-    width: 60%;
-    height: 45px;
+    width: 95%;
+    height: 48px;
     font-size: 15px;
   }
   
-  .todoList {
-    width: 75%;
+  .item {
+    width: 100%;
+    margin-top: 20px;
   }
   
   .todoContainer {
-    flex-direction: row;
-    gap: 4px;
-    padding: 10px;
+    padding: 12px;
   }
   
   .todoContainer li {
-    font-size: 50px;
-    margin-bottom: 6px;
+    font-size: 16px;
   }
   
   .completeButton,
   .deleteButton {
-    width: 50%;
-    padding: 10px;
     font-size: 13px;
-    margin: 2px 0;
-    min-height: 20px;
-  }
-}
-
-/* 超小屏设备适配 (最大宽度 320px) */
-@media screen and (max-width: 320px) {
-  .title {
-    font-size: 28px;
-    margin-top: 8px;
-    margin-bottom: 10px;
-    /* 在超小屏上简化3D效果 */
-    transform: perspective(300px) rotateX(8deg);
-  }
-  
-  .input {
-    width: 95%;
-    height: 40px;
-    font-size: 14px;
-  }
-  
-  .addButton {
-    width: 95%;
-    height: 42px;
-    font-size: 14px;
-  }
-  
-  .todoContainer li {
-    font-size: 14px;
-  }
-  
-  .completeButton,
-  .deleteButton {
-    font-size: 12px;
-    padding: 8px;
+    padding: 10px;
   }
 }
 
 /* 触摸设备优化 */
 @media (hover: none) and (pointer: coarse) {
-  /* 为触摸设备优化交互 */
+  /* 移除hover效果，避免在触摸设备上的问题 */
+  .title:hover,
+  .addButtonText:hover,
+  .todoList li:hover,
+  .completeButton:hover,
+  .deleteButton:hover,
+  .todoContainer:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* 增加触摸反馈 */
   .addButton:active,
   .completeButton:active,
   .deleteButton:active {
@@ -431,34 +409,26 @@
   }
   
   .input:focus {
-    transform: scale(1.02);
+    transform: none;
+    box-shadow: 0 0 10px rgba(87, 40, 40, 0.3);
   }
 }
 
 /* 横屏模式优化 */
 @media screen and (max-width: 768px) and (orientation: landscape) {
+  .listContainer {
+    height: auto;
+    min-height: 100vh;
+  }
+  
   .title {
-    font-size: 32px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
   
-  .todoList {
-    max-height: 45vh;
-  }
-  
-  .inputContainer {
-    flex-direction: row;
-    gap: 10px;
-  }
-  
-  .input {
-    width: 100%;
-  }
-  
-  .addButton {
-    width: 25%;
-    height: 45px;
+  .item {
+    max-height: 50vh;
   }
 }
 
