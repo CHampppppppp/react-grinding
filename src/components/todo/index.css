@@ -203,7 +203,7 @@
 .mouseSvg{
   position:absolute;
   bottom: 400px;
-  right: 400px;
+  right: 450px;
   scale: 1.4;
 }
 
@@ -233,20 +233,44 @@
 
 
 /* 响应式设计 */
+@media (max-width:1613px){
+  .mouseSvg{
+    right:350px;
+  }
+}
+@media (max-width:1427px){
+  .mouseSvg{
+    right:320px;
+  }
+}
+@media (max-width: 1323px) {
+  .mouseSvg{
+    right:280px;
+  }
+}
 @media (max-width: 1200px) {
   .mouseSvg{
     right:250px;
-    bottom:250px;
   }
 }
+/* @media (max-width: 1323px) {
+  .mouseSvg{
+    right:240px;
+  }
+} */
 @media (max-width: 1061px) {
   .mouseSvg{
     right:220px;
   }
 }
-@media (max-width: 958px) {
+@media (max-width: 982px) {
   .mouseSvg{
     right:200px;
+  }
+}
+@media (max-width: 776px) {
+  .mouseSvg{
+    right:100px;
   }
 }
 

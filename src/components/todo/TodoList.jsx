@@ -53,12 +53,12 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
 const TodoList = () => {
 
   const [todos,setTodos] = useState([
-    {id:1,text:'workout',completed:false},
-    {id:2,text:'study',completed:false},
-    {id:3,text:'sleep',completed:false},
-    {id:4,text:'read',completed:false},
-    {id:5,text:'love piggy',completed:false},
-    {id:6,text:'love Camellia',completed:true},
+    {id:Date.now(),text:'workout',completed:false},
+    {id:Date.now()+1,text:'study',completed:false},
+    {id:Date.now()+2,text:'sleep',completed:false},
+    {id:Date.now()+3,text:'read',completed:false},
+    {id:Date.now()+4,text:'love piggy',completed:false},
+    {id:Date.now()+5,text:'love Camellia',completed:true},
   ])
 
   const [inputText, setInputText] = useState('')
@@ -80,8 +80,8 @@ const TodoList = () => {
       message.success({
         content:'添加成功',
       })
-      // 使用更可靠的ID生成方法
-      const newId = todos.length > 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1
+      // 使用时间戳确保唯一ID
+      const newId = Date.now()
       const newTodos = [...todos,{id: newId, text:inputText, completed:false}]
       setTodos(newTodos)
       localStorage.setItem('todos',JSON.stringify(newTodos))
