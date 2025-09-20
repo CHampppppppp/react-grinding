@@ -53,12 +53,12 @@ const TodoItem = ({ todo, onComplete, onDelete }) => {
 const TodoList = () => {
 
   const [todos,setTodos] = useState([
-    {id:Date.now(),text:'workout',completed:false},
-    {id:Date.now()+1,text:'study',completed:false},
-    {id:Date.now()+2,text:'sleep',completed:false},
-    {id:Date.now()+3,text:'read',completed:false},
-    {id:Date.now()+4,text:'love piggy',completed:false},
-    {id:Date.now()+5,text:'love Camellia',completed:true},
+    {id:crypto.randomUUID(),text:'workout',completed:false},
+    {id:crypto.randomUUID(),text:'study',completed:false},
+    {id:crypto.randomUUID(),text:'sleep',completed:false},
+    {id:crypto.randomUUID(),text:'read',completed:false},
+    {id:crypto.randomUUID(),text:'love piggy',completed:false},
+    {id:crypto.randomUUID(),text:'love Camellia',completed:true},
   ])
 
   const [inputText, setInputText] = useState('')
@@ -80,8 +80,8 @@ const TodoList = () => {
       message.success({
         content:'添加成功',
       })
-      // 使用时间戳确保唯一ID
-      const newId = Date.now()
+      // 使用crypto.randomUUID()确保唯一ID
+      const newId = crypto.randomUUID()
       const newTodos = [...todos,{id: newId, text:inputText, completed:false}]
       setTodos(newTodos)
       localStorage.setItem('todos',JSON.stringify(newTodos))

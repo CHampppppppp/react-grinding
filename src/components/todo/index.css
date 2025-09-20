@@ -56,7 +56,7 @@
 }
 
 .input{
-  width: 620px;
+  width: 900px;
   height:50px;
   border: 4px solid #8f4242;
   border-radius: 5px;
@@ -233,6 +233,11 @@
 
 
 /* 响应式设计 */
+@media (max-width:1669px){
+  .mouseSvg{
+    right:370px;
+  }
+}
 @media (max-width:1613px){
   .mouseSvg{
     right:350px;
