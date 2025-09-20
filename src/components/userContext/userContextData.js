@@ -1,0 +1,20 @@
+export const userContextData = [
+  {
+    id:1,
+    name:'champ',
+    age:20,
+    email:'champ@example.com',
+  },
+  {
+    id:2,
+    name:'小花',
+    age:20,
+    email:'xiaohua@example.com',
+  },
+  {
+    id:3,
+    name:'小绿',
+    age:20,
+    email:'xiaolv@example.com',
+  }
+]

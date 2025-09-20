@@ -3,6 +3,7 @@ import './App.css'
 import Array from './components/Array/Array'
 import StyleCard from './components/styleCard/StyleCard'
 import TodoList from './components/todo/TodoList'
+import UserProvider from './components/userContext/UserProvider'
 import Weather from './components/weather/Weather'
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       {/* <Weather temperature={2} /> */}
       {/* <StyleCard /> */}
       {/* <Array /> */}
-      <TodoList />
+      {/* <TodoList /> */}
+      <UserProvider />
     </>
   )
 }
