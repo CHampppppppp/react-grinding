@@ -1,26 +1,27 @@
 import { IconCloud } from "../ui/icon-cloud";
 
 const slugs = [
-  "typescript",
+  "vue.js",
   "javascript",
+  "element",
   "notion",
-  "react",
-  "android",
-  "apple",
+  "flask",
+  "tailwindcss",
   "html5",
   "css",
-  "astro",
+  "axios",
   "mysql",
   "nginx",
-  "vercel",
-  "netlify",
+  "vite",
+  "fastapi",
   "git",
   "github",
-  "gitlab",
-  "steam",
-  "wechat",
-  "qq",
-  "figma",
+  "sqlalchemy",
+  "redis",
+  "mongodb",
+  "openai",
+  "modelcontextprotocol",
+  "socketdotio"
 ];
 
 export function IconCloudContainer() {

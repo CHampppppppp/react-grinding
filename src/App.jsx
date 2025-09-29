@@ -17,7 +17,8 @@ function App() {
       {/* <Array /> */}
       {/* <TodoList /> */}
       {/* <UserProvider /> */}
-      <LoadingBar />
+      {/* <LoadingBar /> */}
+      <IconCloudContainer />
     </>
   )
 }
