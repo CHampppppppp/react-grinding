@@ -6,7 +6,7 @@ import TodoList from './components/todo/TodoList'
 import { IconCloudContainer } from './components/uiContainer/IconCloudContainer'
 import UserProvider from './components/userContext/UserProvider'
 import Weather from './components/weather/Weather'
-import { Globe } from './components/ui/globe'
+import LoadingBar from './components/loadingBar/LoadingBar'
 
 function App() {
 
@@ -17,8 +17,7 @@ function App() {
       {/* <Array /> */}
       {/* <TodoList /> */}
       {/* <UserProvider /> */}
-      {/* <IconCloudContainer /> */}
-      <Globe/>
+      <LoadingBar />
     </>
   )
 }
